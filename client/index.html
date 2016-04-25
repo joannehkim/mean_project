@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+
+<head>
+	<title>MEAN PROJECT</title>
+	<script type="text/javascript" script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script type="text/javascript" script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+	<link rel='stylesheet' href='./static/style.css'>
+
+<script>
+    angular.module('myApp', ['ngRoute'])
+      .config(function($routeProvider){
+        $routeProvider
+          .when('/', {
+            templateUrl: "/partials/login.html",
+            controller: "loginController"
+          })
+          .when('/dashboard', {
+            templateUrl: "/partials/dashboard.html",
+            controller: "successController"
+          })
+          .when('/topic', {
+          	templateUrl: "/partials/topic.html"
+          })
+      })
+      .controller('loginController', loginController)
+      .controller('successController', successController)
+      .factory('loginFactory', loginFactory)
+      .factory('topicFactory', topicFactory)
+</script>
+
+
+</head>
+
+
+
+
+<body ng-app='discussionApp'>
+<!-- 	<a href='#/'>Dashboard</a> | <a href='#/partial2'>Products</a> | <a href='#/partial3'>Orders</a> | <a href='#/partial4'>Customers</a> | <a href='#/partial5'>Settings</a> -->
+	<div ng-view="">
+	</div>
+
+
+</body>
+
+</html>
+
+
+
+
