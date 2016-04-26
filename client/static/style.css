@@ -103,3 +103,56 @@ option:checked{
 .links, .links:hover{
     color:#15509C;
 }
+
+#maintable{
+    width:100%;
+    align-content: center;
+    font-size:1em;
+    opacity:70%;
+    border-collapse: separate;
+    border-spacing: .5em 2em;
+}
+
+td{
+    margin:10px;
+    background: rgb(51, 122, 183); /* Fall-back for browsers that don't support rgba */
+    background: rgba(51, 122, 183, .7);
+    border-color:#15509C;
+    border-width:2px;
+    border-style:solid solid solid solid;
+    padding:2.5px;
+    color:white;
+}
+
+#edit_button{
+    height:2em;
+    padding:10px;
+}
+#delete_button{
+    height:2em;
+    padding:10px;
+}
+.Errandstable{
+    background: rgb(0, 128, 0); /* Fall-back for browsers that don't support rgba */
+    background: rgba(0, 128, 0, .7);
+}
+.Worktable{
+    background: rgb(51, 122, 183); /* Fall-back for browsers that don't support rgba */
+    background: rgba(51, 122, 183, .7);
+}
+.Traveltable{
+    background: rgb(128, 128, 128); /* Fall-back for browsers that don't support rgba */
+    background: rgba(128, 128, 128, .7);
+}
+.Shoppingtable{
+    background: rgb(255, 255, 255); /* Fall-back for browsers that don't support rgba */
+    background: rgba(255, 255, 255, .7);
+}
+.Specialtable{
+    background: rgb(255, 165, 0); /* Fall-back for browsers that don't support rgba */
+    background: rgba(255, 165, 0, .7);
+}
+.Studytable{
+    background: rgb(128, 0, 128); /* Fall-back for browsers that don't support rgba */
+    background: rgba(128, 0, 128, .7);
+}
