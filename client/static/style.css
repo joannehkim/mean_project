@@ -10,6 +10,12 @@ select{
 
 }
 
+#partial{
+    align-content: center;
+    height:300px;
+    width:450px;
+}
+
 option:not(:checked){
 	background-color: white(#3870BA);
 }

@@ -5,23 +5,29 @@
 	<title>MEAN PROJECT</title>
 	<script type="text/javascript" script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 	<script type="text/javascript" script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
-	<link rel='stylesheet' href='./static/style.css'>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	
+  
+  <link rel='stylesheet' href='./static/style.css'>
 
 <script>
     angular.module('myApp', ['ngRoute'])
       .config(function($routeProvider){
         $routeProvider
           .when('/', {
-            templateUrl: "index.html",
+            templateUrl: "/partials/login.html"
             // controller: "loginController"
           })
           .when('/login', {
-            templateUrl: "/partials/login.html",
+            templateUrl: "/partials/login.html"
             // controller: "successController"
           })
           .when('/register', {
-            templateUrl: "/partials/register.html",
+            templateUrl: "/partials/register.html"
             // controller: "successController"
           })
           .when('/success', {
@@ -66,10 +72,11 @@
 
 
 <body ng-app='myApp'>
-<!-- 	<a href='#/'>Dashboard</a> | <a href='#/partial2'>Products</a> | <a href='#/partial3'>Orders</a> | <a href='#/partial4'>Customers</a> | <a href='#/partial5'>Settings</a> -->
-HELLO
-	<div ng-view="">
-	</div>
+	<a href='#/'>Dashboard</a> | <a href='#/new_event'>Add a new Event</a> 
+  <div id = 'container'>
+  	<div id = 'partial' ng-view="">
+  	</div>
+  </div>
 
 
 </body>
