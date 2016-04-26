@@ -1,26 +1,43 @@
-<div class = 'form-group'>
-	<label for = 'name'>What do you need to do?</label>
-	<input type = 'text' class = 'form-control' ng-model = 'new_task.name' id = 'name'>
-</div>
-<div class = 'form-group'>
-	<label for = 'date'>Due date: </label>
-	<input type = 'date' class = 'form-control' ng-model = 'new_task.date' id = 'date'>
-</div>
-<div class = 'form-group'>
-	<label for = 'details'>Details: </label>
-	<input type = 'text' class = 'form-control' ng-model = 'new_task.details' id = 'details'>
-</div>
-<div class = 'form-group'>
-	<label for = 'category'>Category: </label>
-	<select class = 'form-control' ng-model = 'new_task.category' id = 'category'>
-		<option value = 'Study'>Study</option>
-		<option value = 'Travel'>Travel</option>
-		<option value = 'Errands'>Errands</option>
-		<option value = 'Shopping'>Shopping</option>
-		<option value = 'Party/Social'>Party/Social</option>
-		<option value = 'Work'>Work</option>
-	</select>
-</div>
-<div class = 'form-group'>
-	<input type = 'submit' value = 'Add Task!' class = "btn btn-primary btn-lg outline">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <title></title>
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<link rel='stylesheet' href='./static/style.css'>
+
+<div class="col-md-6 col-md-offset-3">
+	<div class = 'form-group'>
+		<label for = 'name'>What do you need to do?</label>
+		<input type = 'text' class = 'form-control' ng-model = 'new_task.name' id = 'name'>
+	</div>
+	<div class = 'form-group'>
+		<label for = 'date'>Due date: </label>
+		<input type = 'date' class = 'form-control' ng-model = 'new_task.date' id = 'date'>
+	</div>
+	<div class = 'form-group'>
+		<label for = 'details'>Details: </label>
+		<input type = 'text' class = 'form-control' ng-model = 'new_task.details' id = 'details'>
+	</div>
+	<div class = 'form-group'>
+		<label for = 'category'>Category: </label>
+		<select class = 'form-control' ng-model = 'new_task.category' id = 'category'>
+			<option value = 'Study'>Study</option>
+			<option value = 'Travel'>Travel</option>
+			<option value = 'Errands'>Errands</option>
+			<option value = 'Shopping'>Shopping</option>
+			<option value = 'Party/Social'>Party/Social</option>
+			<option value = 'Work'>Work</option>
+		</select>
+	</div>
+	<div class = 'form-group'>
+		<input type = 'submit' value = 'Add Task!' class = "btn btn-primary btn-lg outline">
+	</div>
 </div>

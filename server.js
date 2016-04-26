@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 // var mongoose = require('mongoose');
 var path = require('path');
 // var passport = require('passport');
+// var passport = require('./config/passport');
+// var passport = passport();
 
 
 // app.use(passport.initialize());

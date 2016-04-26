@@ -1,8 +1,19 @@
 /*All css regarding colors will change based on category chosen*/
-
+* {
+    padding: 0px;
+    margin: 0px;
+}
+img {
+    width: 100%;
+    position:absolute;
+}
+a, a:active, a:hover {
+    color: white;
+    text-decoration: none;
+}
 label{
-	color:#3870BA;
-	font-size: 18px;
+	color:#15509C;
+	font-size: 1.125em;
 	font-family:'Helvetica';
 }
 
@@ -10,24 +21,19 @@ select{
 
 }
 
-#partial{
-    align-content: center;
-    height:300px;
-    width:450px;
-}
 
 option:not(:checked){
-	background-color: white(#3870BA);
+	background-color: white(#15509C);
 }
 
 option:checked{
-	background-color:#3870BA;
+	background-color:#15509C;
 	color:white;
 }
 
 .form-control{
 	border-radius:0px;
-	border-color:#3870BA;
+	border-color:#15509C;
 	border-width:1px;
 }
 
@@ -38,30 +44,44 @@ option:checked{
 .form-group{
 	border-width:0.5px;
 }
-
 .btn.outline {
     background: none;
     padding: 5px 15px;
     border-radius:0px;
 }
 .btn-primary.outline {
-    border: 1px solid #3870BA;
-    color: #3870BA;
+    border: 1px solid #15509C;
+    color: #15509C;
 }
 .btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
     color: white;
-    background-color: #3870BA;
-    border-color: #3870BA;
+    background-color: #15509C;
+    border-color: #15509C;
 }
 .btn-primary.outline:active, .btn-primary.outline.active {
-    border-color: #3870BA;
-    color: #3870BA;
+    border-color: #15509C;
     box-shadow: none;
+}
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 20px;
+    height: 100px;
+    padding-top: 0;
 }
 
 /***********************
   CUSTON BTN VALUES
 ************************/
+
+#login_button {
+    margin: 20px 10px;
+    border-radius: 40px;
+}
+
+#register_button {
+    margin: 20px 30px 20px 10px;
+    border-radius: 40px;
+}
 
 .btn {
     padding: 14px 24px;
@@ -72,4 +92,14 @@ option:checked{
 }
 .btn:focus, .btn:active:focus, .btn.active:focus {
     outline: 0 none;
+}
+
+
+#partial{
+    background-color:white;
+    padding-top:20px;
+}
+
+.links, .links:hover{
+    color:#15509C;
 }

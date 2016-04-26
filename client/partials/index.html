@@ -1,4 +1,3 @@
-
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -7,33 +6,34 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<title></title>
+    <title></title>
 
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#login_button').click(function() {
+      
+    })
+  })  
+
+</script>
+
 <link rel='stylesheet' href='./static/style.css'>
 
-<body>
 
-<div class="container">
-    <div class="row">
-        <form ng-submit="loginUser" method="POST">
-            <div class="col-md-6 col-md-offset-3">
-            	<legend><h3 class="header">Please Login</h3></legend>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="example@domain.com">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                </div>
-                <input type="submit" class="btn btn-primary" id="login_email" name="login_email" value="Sign In">
-            </div>
-        </form>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <button type="button" id="login_button" class="btn btn-primary"><a href="/#/login">Sign In</a></button>
+        <button type="button" id="register_button" class="btn btn-primary"><a href="/#/register">Register</a></button>
+      </ul>
     </div>
-</div>
+  </div>
+</nav>
 
 
-</body>
+
+
