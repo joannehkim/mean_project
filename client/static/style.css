@@ -1,13 +1,19 @@
 /*All css regarding colors will change based on category chosen*/
-
+* {
+    padding: 0px;
+    margin: 0px;
+}
+img {
+    width: 100%;
+}
+a, a:active, a:hover {
+    color: white;
+    text-decoration: none;
+}
 label{
 	color:#3870BA;
 	font-size: 18px;
 	font-family:'Helvetica';
-}
-
-select{
-
 }
 
 option:not(:checked){
@@ -32,7 +38,6 @@ option:checked{
 .form-group{
 	border-width:0.5px;
 }
-
 .btn.outline {
     background: none;
     padding: 5px 15px;
@@ -49,13 +54,28 @@ option:checked{
 }
 .btn-primary.outline:active, .btn-primary.outline.active {
     border-color: #3870BA;
-    color: #3870BA;
     box-shadow: none;
+}
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 20px;
+    height: 100px;
+    padding-top: 0;
 }
 
 /***********************
   CUSTON BTN VALUES
 ************************/
+
+#login_button {
+    margin: 20px 10px;
+    border-radius: 40px;
+}
+
+#register_button {
+    margin: 20px 30px 20px 10px;
+    border-radius: 40px;
+}
 
 .btn {
     padding: 14px 24px;
