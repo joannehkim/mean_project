@@ -6,7 +6,7 @@ var ListSchema = new mongoose.Schema({
 	desc: String,
 	category: String,
 	completed: Number,
-	date: {type:Date, default:Date.now}
+	date: Date
 
 })
 

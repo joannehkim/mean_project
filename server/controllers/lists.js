@@ -16,7 +16,8 @@ module.exports = (function() {
     		}
     	})
     },
-    addFriend: function(req, res){
+    create: function(req, res){
+        console.log(req.body);
     	List.create(req.body, function(err, results){
     		if(err){
     			console.log(err);
@@ -25,7 +26,7 @@ module.exports = (function() {
     		}
     	})    	
     },
-    deleteFriend: function(req, res){
+    delete: function(req, res){
     	List.remove({_id: req.body._id}, function(err, results){
     		if(err){
     			console.log(err);

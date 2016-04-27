@@ -46,7 +46,8 @@
             controller: "MainController"
           })
           .when('/new_event', {
-            templateUrl: "/partials/new_event.html"
+            templateUrl: "/partials/new_event.html",
+            controller:"MainController"
           })
           .when('/event_details', {
             templateUrl: "/partials/event_details.html"
@@ -77,30 +78,9 @@
       // .controller('MainController', MainController)
       // .factory('loginFactory', loginFactory)
       // .factory('topicFactory', topicFactory)
-      myApp.factory('TaskFactory', function($http){
+      myApp.factory('TaskFactory', function($http, $location){
         var factory = {};
         var tasks = [
-        { _user: 'Kevin',
-          topic: 'Get food',
-          desc: 'I like turtles',
-          category: 'Work'},
-        { _user: 'Joanne',
-          topic: 'Put funny bows on my dog.',
-          desc: 'What a man',
-          category: 'Special'},
-        { _user: 'Jasper',
-          topic: 'Turn up at Coachella',
-          desc: "Let's go baby!!",
-          category: 'Travel'}
-        ];
-        factory.index = function(callback){
-          tasks = output;
-          callback(tasks);
-        }
-        return factory;
-      });
-      myApp.controller('MainController', function(TaskFactory, $scope){
-        $scope.tasks = [
         { _user: 'Kevin',
           topic: 'Get food',
           desc: 'I like turtles',
@@ -119,7 +99,35 @@
           category: 'Travel',
           date: '2016-04-12',
           completed:0}];
+        factory.index = function(callback){
+          $http.get('/tasks').success(function(output){
+            tasks = output;
+            callback(tasks);
+          })
+        }
+        factory.create = function(info, callback){
+          $http.post('/addTask', info).success(function(output){
+            tasks.push({name:info.name, desc: info.desc, date: info.date, category: info.category, completed: 0});
 
+          })
+        }
+        return factory;
+      });
+      myApp.controller('MainController', function(TaskFactory, $scope, $location){
+        $scope.new_task = {};
+        $scope.tasks = [];
+        TaskFactory.index(function(data){
+          $scope.tasks = data;
+        });
+        $scope.addTask = function(){
+          console.log('clicked add task');
+          console.log($scope.new_task);
+          TaskFactory.create($scope.new_task, function(data){
+            $scope.new_task = {};
+            $scope.tasks = TaskFactory.index();
+            $location.path('/success')
+          })
+        }
       });
 </script>
 <script type="text/javascript">
