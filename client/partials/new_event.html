@@ -9,7 +9,8 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <title></title>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
 <link rel='stylesheet' href='./static/style.css'>
 
@@ -23,16 +24,16 @@
 		<input type = 'date' class = 'form-control' ng-model = 'new_task.date' id = 'date'>
 	</div>
 	<div class = 'form-group'>
-		<label for = 'details'>Details: </label>
-		<input type = 'text' class = 'form-control' ng-model = 'new_task.details' id = 'details'>
+		<label for = 'description'>Description: </label>
+		<input type = 'text' class = 'form-control' ng-model = 'new_task.desc' id = 'description'>
 	</div>
 	<div class = 'form-group'>
 		<label for = 'category'>Category: </label>
-		<input type = 'text' class = 'form-control' onfocus= 'new_task.details' id = 'category' data-toggle='modal' data-target='#myModal'>
+		<input type = 'text' class = 'form-control' id = 'category' data-toggle='modal' data-target='#myModal'>
 	</div>
 
 	<div class = 'form-group'>
-		<input type = 'submit' value = 'Add Task!' class = "btn btn-primary btn-lg outline">
+		<input ng-click = 'addTask()' type = 'submit' value = 'Add Task!' class = "btn btn-primary btn-lg outline">
 	</div>
 
 
@@ -53,7 +54,7 @@
     display: inline-block;
 }
 #study {
-    width: 50%;
+    width: 30%;
     height: 300px;
     background-color: purple;
     display: inline-block;
@@ -64,31 +65,31 @@ p {
     text-align: center;
 }
 #travel {
-    width: 49%;
+    width: 30%;
     height: 300px;
     background-color: gray;
     display: inline-block;
 }
 #errands {
-    width: 50%;
+    width: 30%;
     height: 300px;
     background-color: green;
     display: inline-block;
 }
 #shopping {
-    width: 49%;
+    width: 30%;
     height: 300px;
     background-color: yellow;
     display: inline-block;
 }
 #special {
-    width: 50%;
+    width: 30%;
     height: 300px;
     background-color: orange;
     display: inline-block;
 }
 #work {
-    width: 49%;
+    width: 30%;
     height: 300px;
     background-color: blue;
     display: inline-block;
@@ -109,26 +110,30 @@ p {
           <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
-<div id="container">
-		<a href="/partials/main.html"><div id="study">
-			<p>STUDY</p>
-		</div></a>
-		<div id="travel">
-			<p>TRAVEL</p>
-		</div>
-		<div id="errands">
-			<p>ERRANDS</p>
-		</div>
-		<div id="shopping">
-			<p>SHOPPING</p>
-		</div>
-		<div id="special">
-			<p>SPECIAL</p>
-		</div>
-		<div id="work">
-			<p>WORK</p>
-		</div>
-</div>
+          <div id="container">
+              <div id="study" data-dismiss="modal">
+          			<p>STUDY</p>
+          		</div>
+              
+          		<div id="travel" data-dismiss="modal">
+          			<p>TRAVEL</p>
+          		</div>
+              
+          		<div id="errands" data-dismiss="modal">
+          			<p>ERRANDS</p>
+          		</div>
+              
+          		<div id="shopping" data-dismiss="modal">
+          			<p>SHOPPING</p>
+          		</div>
+          		<div id="special" data-dismiss="modal">
+          			<p>SPECIAL</p>
+          		</div>
+              
+          		<div id="work">
+          			<p>WORK</p>
+          		</div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" onclick="hello();" data-dismiss="modal">Close</button>
