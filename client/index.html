@@ -43,26 +43,9 @@
           .when('/event_details', {
             templateUrl: "/partials/event_details.html"
           })
-          .when('/stats', {
-            templateUrl: "/partials/stats.html"
-          })
-          .when('/study_event', {
-            templateUrl: "/partials/study_event.html"
-          })
-          .when('/travel_event', {
-            templateUrl: "/partials/travel_event.html"
-          })
-          .when('/errands_event', {
-            templateUrl: "/partials/errands_event.html"
-          })
-          .when('/shopping_event', {
-            templateUrl: "/partials/shopping_event.html"
-          })
-          .when('/special_event', {
-            templateUrl: "/partials/special_event.html"
-          })
-          .when('/work_event', {
-            templateUrl: "/partials/work_event.html"
+          .when('/edit_event/:id',{
+            templateUrl: "/partials/edit_event.html",
+            controller:"EditController"
           })
       })
       // .controller('loginController', loginController)
@@ -72,6 +55,7 @@
       myApp.factory('TaskFactory', function($http, $location){
         var factory = {};
         var tasks = [];
+        var currentTask = {};
         factory.index = function(callback){
           $http.get('/tasks').success(function(output){
             tasks = output;
@@ -92,6 +76,17 @@
         }
         factory.toggle = function(info, callback){
           $http.post('/toggleTask', info).success(function(output){
+            callback();
+          })
+        }
+        factory.findOne = function(info, callback){
+          $http.post('/findTask', info).success(function(output){
+            currentTask= output;
+            callback(currentTask);
+          })
+        }
+        factory.update = function(info, callback){
+          $http.post('/editTask', info).success(function(output){
             callback();
           })
         }
@@ -127,6 +122,52 @@
             console.log('successfully deleted task');
           })
         }
+
+          $(document).ready(function() {
+            $(document).on("click", "#special", function() {
+              $('#category').val("Special");
+              $scope.new_task.category = "Special";
+            })
+            $(document).on("click", "#shopping", function() {
+              $('#category').val("Shopping");
+              $scope.new_task.category = "Shopping";
+            })
+            $(document).on("click", "#work", function() {
+              $('#category').val("Work");
+              $scope.new_task.category = "Work";
+            })
+            $(document).on("click", "#travel", function() {
+              $('#category').val("Travel");
+              $scope.new_task.category = "Travel";
+            })
+            $(document).on("click", "#study", function() {
+              $('#category').val("Study");
+              $scope.new_task.category = "Study";
+            })
+            $(document).on("click", "#errands", function() {
+              $('#category').val("Errands");
+              $scope.new_task.category = "Errands";
+            })
+          })  
+      });
+      myApp.controller('EditController', function(TaskFactory, $scope, $location, $routeParams){
+        $scope.task = {};
+        $scope.currentTask = {};
+        TaskFactory.findOne({id:$routeParams.id}, function(data){
+          $scope.currentTask = data;
+          console.log($scope.currentTask);
+          $scope.task = $scope.currentTask;
+        });
+        
+        $scope.editTask = function(task){
+          console.log('clicked on edit task');
+          TaskFactory.update(task, function(data){
+            console.log('successfully edited task');
+            $scope.currentTask= data;
+            $location.path('/success');
+          })
+        }
+
           $(document).ready(function() {
             $(document).on("click", "#special", function() {
               $('#category').val("Special");

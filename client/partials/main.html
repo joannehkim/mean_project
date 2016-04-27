@@ -73,7 +73,7 @@ input {
 			<td class = '{{task.category}}table'>{{task.category}}</td>
 			<td class = '{{task.category}}table'>{{task.date}}</td>
 			<td class = '{{task.category}}table'>{{task.completed}}</td>
-			<td class = '{{task.category}}table'><button type="button" id="edit_button" class="btn btn-primary" ng-click = 'editTask(task)'><a href="/#/login">Edit</a></button>
+			<td class = '{{task.category}}table'><button type="button" id="edit_button" class="btn btn-primary"><a href="#/edit_event/{{task._id}}">Edit</a></button>
         	<button type="button" id="delete_button" class="btn btn-primary"><a href="" ng-click = 'removeTask(task)'>Delete</a></button><button type="button" id="toggle_button" class="btn btn-primary"><a href="" ng-click = 'toggleStatus(task)'>Toggle Status</a></button></td>
 		</tr>
 	</table>

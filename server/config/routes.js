@@ -26,6 +26,17 @@ module.exports = function(app) {
 	});
 	app.post('/toggleTask', function(req, res){
 		lists.toggle(req,res);
+	});
+	app.get('/editTask/:id', function(req, res){
+		console.log(req.params);
+		console.log(req.body);
+		res.render('/edit_event', {taskId: req.params.id});
+	})
+	app.post('/findTask', function(req, res){
+		lists.findOne(req,res);
+	})
+	app.post('/editTask', function(req, res){
+		lists.update(req, res);
 	})
 
 }

@@ -54,6 +54,26 @@ module.exports = (function() {
                 }
             });
         }
+    },
+    findOne: function(req,res){
+        console.log(req.body.id);
+        List.findOne({_id:req.body.id}, function(err, results){
+            if(err){
+                console.log(err);
+            }else{
+                res.json(results);
+            }
+        });
+    },
+    update: function(req, res){
+        console.log(req.body);
+        List.update({_id:req.body._id}, {$set: {name: req.body.name, desc: req.body.desc, category: req.body.category, date: req.body.date}}, [], function(err, results){
+            if(err){
+                console.log(err);
+            }else{
+                res.json(results);
+            }
+        })
     }
   }
 })();
