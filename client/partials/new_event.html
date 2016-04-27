@@ -98,6 +98,8 @@ p {
 
 <div class="container">
   <!-- Trigger the modal with a button -->
+<input type="hidden" id="new_event_category">
+
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -129,12 +131,24 @@ p {
 </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" onclick="hello();" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+	function hello() {
+		$("#new_event_category").val($("#category").val());
+		$("#myModal").modal("hide");
+	}
+
+	$('#myModal').on('hidden', function() {
+    	console.log('username : '+$("#new_event_category").val());
+	})
+</script>
 
 
 
