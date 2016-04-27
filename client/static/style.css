@@ -12,14 +12,61 @@ a, a:active, a:hover {
     text-decoration: none;
 }
 label{
-	color:#15509C;
-	font-size: 1.125em;
+	color:white;
+	font-size: 1.5em;
 	font-family:'Helvetica';
 }
 #logo {
     height: 95px;
     width: 250px;
     margin-left: 80px;
+}
+#header_detail {
+    margin-top: 60px;
+    margin-left: 60px;
+    font-size: 2em;
+    color: white;
+}
+
+h3 {
+    color: white;
+    font-size: 2em;
+}
+#email {
+    background: transparent;
+    color: white;
+}
+#password {
+    background: transparent;
+    color: white;
+}
+#login_email {
+    border-radius: 40px;
+    margin-top: 10px;
+    background: transparent;
+    border: 1px solid white; 
+}
+#register_email {
+    border-radius: 40px;
+    margin-top: 10px;
+    background: transparent;
+    border: 1px solid white; 
+}
+#name {
+    background: transparent;
+    color: white;
+}
+#date {
+    background: transparent;
+    color: white;
+}
+#description {
+    background: transparent;
+    color: white;
+}
+#category {
+    background: transparent;
+    color: white;
 }
 
 select{
@@ -37,7 +84,7 @@ option:checked{
 
 .form-control{
 	border-radius:0px;
-	border-color:#15509C;
+	border-color:white;
 	border-width:1px;
 }
 
@@ -55,7 +102,8 @@ option:checked{
 }
 .btn-primary.outline {
     border: 1px solid #15509C;
-    color: #15509C;
+    padding: 15px;
+    color: white;
 }
 .btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
     color: white;
@@ -67,10 +115,25 @@ option:checked{
     box-shadow: none;
 }
 .navbar-brand,
-.navbar-nav li a {
+.navbar-nav li a,
+.navbar-collapse {
     line-height: 20px;
     height: 100px;
     padding-top: 0;
+}
+#custom_nav {
+    background: transparent;
+    border-bottom: none;
+    box-shadow: none;
+}
+#first_name {
+    background: transparent;
+}
+#last_name {
+    background: transparent;
+}
+#passwordconf {
+    background: transparent;
 }
 
 /***********************
@@ -78,13 +141,22 @@ option:checked{
 ************************/
 
 #login_button {
-    margin: 20px 10px;
+    margin: 40px 20px 20px 10px;
     border-radius: 40px;
+    background: transparent;
+    border: 1px solid white;
 }
 
 #register_button {
-    margin: 20px 30px 20px 10px;
+    margin: 40px 90px 20px 10px;
     border-radius: 40px;
+    background: transparent;
+    border: 1px solid white;
+}
+#task_button {
+    border-radius: 40px;
+    background: transparent;
+    border: 1px solid white;
 }
 
 .btn {
@@ -97,7 +169,6 @@ option:checked{
 .btn:focus, .btn:active:focus, .btn.active:focus {
     outline: 0 none;
 }
-
 
 #partial{
     background-color:white;
@@ -182,7 +253,9 @@ td{
     margin: auto;
     padding: 0;
     border: 1px solid #888;
-    width: 80%;
+    text-align: center;
+    width: 100%;
+    border: 2px solid black;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -218,14 +291,21 @@ td{
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+    background-color: white;
+    color: black;
+    font-size: 100px;
+}
+.modal-title {
+    font-size: .3em;
 }
 
-.modal-body {padding: 2px 16px;}
+.modal-body {
+    padding: 2px 16px;
+}
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+    background-color: white;
+    color: black;
 }
+
