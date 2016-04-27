@@ -21,6 +21,12 @@ module.exports = function(app) {
 	app.get('/tasks', function(req, res){
 		lists.index(req, res);
 	});
+	app.post('/deleteTask', function(req, res){
+		lists.delete(req,res);
+	});
+	app.post('/toggleTask', function(req, res){
+		lists.toggle(req,res);
+	})
 
 }
 

@@ -5,7 +5,7 @@ var ListSchema = new mongoose.Schema({
 	name: String,
 	desc: String,
 	category: String,
-	completed: Number,
+	completed: String,
 	date: Date
 
 })

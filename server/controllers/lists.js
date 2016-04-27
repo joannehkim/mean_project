@@ -35,6 +35,25 @@ module.exports = (function() {
     		}
 	        
 	    })
+    },
+    toggle: function(req, res){
+        if(req.body.completed == "Incomplete"){
+            List.update({_id: req.body._id}, {completed: 'Completed'}, [], function(err, results){
+                if(err){
+                    console.log(err);
+                }else{
+                    res.json(results);
+                }
+            });
+        }else{
+            List.update({_id: req.body._id}, {completed: 'Incomplete'}, [], function(err, results){
+                if(err){
+                    console.log(err);
+                }else{
+                    res.json(results);
+                }
+            });
+        }
     }
   }
 })();

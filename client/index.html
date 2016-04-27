@@ -6,17 +6,8 @@
 	<script type="text/javascript" script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 	<script type="text/javascript" script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	
-  
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-
-  <link rel="stylesheet" href="https:/.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="/maxcdnsha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
@@ -80,25 +71,7 @@
       // .factory('topicFactory', topicFactory)
       myApp.factory('TaskFactory', function($http, $location){
         var factory = {};
-        var tasks = [
-        { _user: 'Kevin',
-          topic: 'Get food',
-          desc: 'I like turtles',
-          category: 'Errands',
-          date: '2016-04-12',
-          completed:0},
-        { _user: 'Joanne',
-          topic: 'Put funny bows on my dog.',
-          desc: 'What a man',
-          category: 'Special',
-          date: '2016-04-12',
-          completed: 1},
-        { _user: 'Jasper',
-          topic: 'Turn up at Coachella',
-          desc: "Let's go baby!!",
-          category: 'Travel',
-          date: '2016-04-12',
-          completed:0}];
+        var tasks = [];
         factory.index = function(callback){
           $http.get('/tasks').success(function(output){
             tasks = output;
@@ -108,7 +81,18 @@
         factory.create = function(info, callback){
           $http.post('/addTask', info).success(function(output){
             tasks.push({name:info.name, desc: info.desc, date: info.date, category: info.category, completed: 0});
+            callback();
 
+          })
+        }
+        factory.delete = function(info, callback){
+          $http.post('/deleteTask', info).success(function(output){
+            tasks.splice(tasks.indexOf(info), 1);
+          })
+        }
+        factory.toggle = function(info, callback){
+          $http.post('/toggleTask', info).success(function(output){
+            callback();
           })
         }
         return factory;
@@ -121,56 +105,67 @@
         });
         $scope.addTask = function(){
           console.log('clicked add task');
+          $scope.new_task.completed = "Incomplete";
           console.log($scope.new_task);
           TaskFactory.create($scope.new_task, function(data){
             $scope.new_task = {};
-            $scope.tasks = TaskFactory.index();
-            $location.path('/success')
+            console.log("HERE");
+            $location.path('/success');
           })
         }
+        $scope.toggleStatus = function(task){
+          console.log('clicked on change status');
+          TaskFactory.toggle(task, function(data){
+            TaskFactory.index(function(data){
+              $scope.tasks = data;
+            })
+          })
+        }
+        $scope.removeTask = function(task){
+          console.log('clicked on delete task');
+          TaskFactory.delete(task, function(data){
+            console.log('successfully deleted task');
+          })
+        }
+          $(document).ready(function() {
+            $(document).on("click", "#special", function() {
+              $('#category').val("Special");
+              $scope.new_task.category = "Special";
+            })
+            $(document).on("click", "#shopping", function() {
+              $('#category').val("Shopping");
+              $scope.new_task.category = "Shopping";
+            })
+            $(document).on("click", "#work", function() {
+              $('#category').val("Work");
+              $scope.new_task.category = "Work";
+            })
+            $(document).on("click", "#travel", function() {
+              $('#category').val("Travel");
+              $scope.new_task.category = "Travel";
+            })
+            $(document).on("click", "#study", function() {
+              $('#category').val("Study");
+              $scope.new_task.category = "Study";
+            })
+            $(document).on("click", "#errands", function() {
+              $('#category').val("Errands");
+              $scope.new_task.category = "Errands";
+            })
+          })  
       });
 </script>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $(document).on("click", "#special", function() {
-      $('#category').val("Special");
-    })
-    $(document).on("click", "#shopping", function() {
-      $('#category').val("Shopping");
-    })
-    $(document).on("click", "#work", function() {
-      $('#category').val("Work");
-    })
-    $(document).on("click", "#travel", function() {
-      $('#category').val("Travel");
-    })
-    $(document).on("click", "#study", function() {
-      $('#category').val("Study");
-    })
-    $(document).on("click", "#errands", function() {
-      $('#category').val("Errands");
-    })
-  })  
 
-</script>
 </head>
 
-
-
-
 <body ng-app='myApp'>
+
 	<a class = 'links' href='#/'>Dashboard</a> | <a class= 'links' href='#/new_event'>Add a new Event</a> 
   <div id="banner">
     <img src="/static/banner.jpg">
-      <div id = 'partial' ng-view="" >
+      <div id = 'partial' ng-view="">
       </div>
   </div>
-  	
-  </div>
-<!-- 	<a href='#/'>Dashboard</a> | <a href='#/partial2'>Products</a> | <a href='#/partial3'>Orders</a> | <a href='#/partial4'>Customers</a> | <a href='#/partial5'>Settings</a> -->
-
-
 </body>
-
 </html>
 
