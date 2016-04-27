@@ -81,15 +81,15 @@
         var factory = {};
         var tasks = [
         { _user: 'Kevin',
-          name: 'Get food',
+          topic: 'Get food',
           desc: 'I like turtles',
           category: 'Work'},
         { _user: 'Joanne',
-          name: 'Put funny bows on my dog.',
+          topic: 'Put funny bows on my dog.',
           desc: 'What a man',
           category: 'Special'},
         { _user: 'Jasper',
-          name: 'Turn up at Coachella',
+          topic: 'Turn up at Coachella',
           desc: "Let's go baby!!",
           category: 'Travel'}
         ];
@@ -97,21 +97,15 @@
           tasks = output;
           callback(tasks);
         }
-        factory.create = function(info, callback){
-          $http.post('/addTask'. info).success(function(output){
-            tasks.push({name: info.name, desc: info.desc, category: info.category, completed: 0});
-          })
-        }
         return factory;
       });
       myApp.controller('MainController', function(TaskFactory, $scope){
-        $scope.new_task = {};
         $scope.tasks = [
         { _user: 'Kevin',
           topic: 'Get food',
           desc: 'I like turtles',
           category: 'Errands',
-          date: '2016-04-12'
+          date: '2016-04-12',
           completed:0},
         { _user: 'Joanne',
           topic: 'Put funny bows on my dog.',
@@ -123,12 +117,9 @@
           topic: 'Turn up at Coachella',
           desc: "Let's go baby!!",
           category: 'Travel',
-          date: '2016-04-12'
+          date: '2016-04-12',
           completed:0}];
-        $scope.addTask = function(new_task){
-          TaskFactory.create($scope.new_task);
 
-        }
       });
 </script>
 <script type="text/javascript">
