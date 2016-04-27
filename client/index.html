@@ -13,8 +13,8 @@
 	
   
 
-  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
   <link rel="stylesheet" href="https:/.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="/maxcdnsha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -26,7 +26,7 @@
   <link rel='stylesheet' href='./static/style.css'>
 
 <script>
-    angular.module('myApp', ['ngRoute'])
+    var myApp = angular.module('myApp', ['ngRoute'])
       .config(function($routeProvider){
         $routeProvider
           .when('/', {
@@ -42,7 +42,8 @@
             // controller: "successController"
           })
           .when('/success', {
-          	templateUrl: "/partials/main.html"
+          	templateUrl: "/partials/main.html",
+            controller: "MainController"
           })
           .when('/new_event', {
             templateUrl: "/partials/new_event.html"
@@ -73,9 +74,85 @@
           })
       })
       // .controller('loginController', loginController)
-      // .controller('successController', successController)
+      // .controller('MainController', MainController)
       // .factory('loginFactory', loginFactory)
       // .factory('topicFactory', topicFactory)
+      myApp.factory('TaskFactory', function($http){
+        var factory = {};
+        var tasks = [
+        { _user: 'Kevin',
+          name: 'Get food',
+          desc: 'I like turtles',
+          category: 'Work'},
+        { _user: 'Joanne',
+          name: 'Put funny bows on my dog.',
+          desc: 'What a man',
+          category: 'Special'},
+        { _user: 'Jasper',
+          name: 'Turn up at Coachella',
+          desc: "Let's go baby!!",
+          category: 'Travel'}
+        ];
+        factory.index = function(callback){
+          tasks = output;
+          callback(tasks);
+        }
+        factory.create = function(info, callback){
+          $http.post('/addTask'. info).success(function(output){
+            tasks.push({name: info.name, desc: info.desc, category: info.category, completed: 0});
+          })
+        }
+        return factory;
+      });
+      myApp.controller('MainController', function(TaskFactory, $scope){
+        $scope.new_task = {};
+        $scope.tasks = [
+        { _user: 'Kevin',
+          topic: 'Get food',
+          desc: 'I like turtles',
+          category: 'Errands',
+          date: '2016-04-12'
+          completed:0},
+        { _user: 'Joanne',
+          topic: 'Put funny bows on my dog.',
+          desc: 'What a man',
+          category: 'Special',
+          date: '2016-04-12',
+          completed: 1},
+        { _user: 'Jasper',
+          topic: 'Turn up at Coachella',
+          desc: "Let's go baby!!",
+          category: 'Travel',
+          date: '2016-04-12'
+          completed:0}];
+        $scope.addTask = function(new_task){
+          TaskFactory.create($scope.new_task);
+
+        }
+      });
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(document).on("click", "#special", function() {
+      $('#category').val("Special");
+    })
+    $(document).on("click", "#shopping", function() {
+      $('#category').val("Shopping");
+    })
+    $(document).on("click", "#work", function() {
+      $('#category').val("Work");
+    })
+    $(document).on("click", "#travel", function() {
+      $('#category').val("Travel");
+    })
+    $(document).on("click", "#study", function() {
+      $('#category').val("Study");
+    })
+    $(document).on("click", "#errands", function() {
+      $('#category').val("Errands");
+    })
+  })  
+
 </script>
 </head>
 
@@ -86,7 +163,7 @@
 	<a class = 'links' href='#/'>Dashboard</a> | <a class= 'links' href='#/new_event'>Add a new Event</a> 
   <div id="banner">
     <img src="/static/banner.jpg">
-      <div id = 'partial' ng-view="">
+      <div id = 'partial' ng-view="" >
       </div>
   </div>
   	

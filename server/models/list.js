@@ -2,10 +2,11 @@ var mongoose = require('mongoose');
 
 var ListSchema = new mongoose.Schema({
 	_user: String,
-	topic: String,
+	name: String,
 	desc: String,
 	category: String,
-	posts: Number
+	completed: Number,
+	date: {type:Date, default:Date.now}
 
 })
 

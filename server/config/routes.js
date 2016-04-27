@@ -1,5 +1,5 @@
 // var users = require('./../controller/users.js');
-// var topics = require('./../controller/topics.js');
+var lists = require('./../controller/lists.js');
 // var posts = require('./../controller/post.js');
 // var comments = require('./../controller/comment.js');
 
@@ -15,8 +15,8 @@ module.exports = function(app) {
 	});
 
 	// FROM [TOPIC FACTORY] - CREATE NEW TOPIC
-	app.post('/topics', function(req, res) {
-		topics.create(req, res);
+	app.post('/addTask', function(req, res) {
+		lists.create(req, res);
 	});
 
 

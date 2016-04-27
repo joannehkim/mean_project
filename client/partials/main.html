@@ -1,1 +1,23 @@
-<a href = '/new_event'>Create a new event</a>
+<link rel='stylesheet' href='./static/style.css'>
+<div class="col-md-6 col-md-offset-3">
+	<table id = 'maintable'>
+		<tr>
+			<td>Name:</td>
+			<td>Topic:</td>
+			<td>Description:</td>
+			<td>Category:</td>
+			<td>Date:</td>
+			<td>Actions:</td>
+		</tr>
+		<tr ng-repeat = "task in tasks">
+			<td class = '{{task.category}}table'>{{task._user}}</td>
+			<td class = '{{task.category}}table'>{{task.topic}}</td>
+			<td class = '{{task.category}}table'>{{task.desc}}</td>
+			<td class = '{{task.category}}table'>{{task.category}}</td>
+			<td class = '{{task.category}}table'>{{task.date}}</td>
+			<td class = '{{task.category}}table'><button type="button" id="edit_button" class="btn btn-primary" ng-click = 'editTask(task)'><a href="/#/login">Edit</a></button>
+        	<button type="button" id="delete_button" class="btn btn-primary"><a href="/#/register">Delete</a></button></td>
+		</tr>
+	</table>
+</div>
+<script>console.log(tasks)</script>
