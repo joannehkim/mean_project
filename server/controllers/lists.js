@@ -74,6 +74,24 @@ module.exports = (function() {
                 res.json(results);
             }
         })
+    },
+    indexCompleted: function(req, res) {
+        List.find({completed:"Completed"}, function(err, results){
+            if(err){
+                console.log(err);
+            }else {
+                res.json(results);
+            }
+        })
+    },
+    indexIncomplete: function(req, res) {
+        List.find({completed:"Incomplete"}, function(err, results){
+            if(err){
+                console.log(err);
+            }else {
+                res.json(results);
+            }
+        })
     }
   }
 })();

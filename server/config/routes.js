@@ -47,6 +47,12 @@ module.exports = function(app) {
     app.post('/login', function(req, res) {
         users.index(req,res);
     });
+    app.get('/completed', function(req, res){
+    	lists.indexCompleted(req, res);
+    });
+    app.get('/incomplete', function(req, res){
+    	lists.indexIncomplete(req, res);
+    })
 }
 
 
