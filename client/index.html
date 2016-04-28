@@ -26,11 +26,11 @@
           })
           .when('/login', {
             templateUrl: "/partials/login.html",
-            controller: "LoginController"
+            controller: "loginsController"
           })
           .when('/register', {
             templateUrl: "/partials/register.html",
-            controller: "RegisterFactory"
+            controller: "loginsController"
           })
           .when('/success', {
             templateUrl: "/partials/main.html",
@@ -113,78 +113,59 @@
         return factory;
       });
 
+      //REGISTRATION FACTORY
+      myApp.factory('RegisterFactory', function($http) {
 
-      //LOGIN FACTORY
-      myApp.factory('loginFactory', function($http, $location){
-          var factory = {};
-          var currentUser = null;
+         var factory = {};
 
-
-          factory.getCurrent = function(callback){
-            if(currentUser) callback(currentUser);
-            else{
-              $location.path('/');
-            }
-          }
-
-          factory.login = function(data, successHandler, failHandler){
-            $http.post('/login', data).then(function(res){
-              currentUser = res.data;
-              console.log(currentUser, "got a current user");
-              successHandler(res);
-            }, failHandler);
-          }
-
-<<<<<<< HEAD
-          factory.register = function(data, successHandler, failHandler){
-            $http.post('/register', data).then(successHandler, failHandler);
-          }
-
-          factory.logout = function(){
-            $http.get('/logout').then(function(){
-              $location.path('/');
-            });
-          }
-
-          return factory;
-      });
-
-      //PROFILE FACTORY
-      myApp.factory('profileFactory', function($http, loginFactory){
-        var factory = {};
-        factory.show = function(success, fail){
-          $http.get('/profile').then(success, fail)
-        }
-        return factory;
-      })
-
-
-
-      myApp.controller('MainController', function(TaskFactory, $scope, $location){
-=======
-      //LOGIN FACTORY
-      myApp.factory('LoginFactory', function($http, $location) {
-         var factory ={};
-         var currentUser = null;
-         factory.index = function(user, callback) {
-           $http.post('/login', user).success(function(getUser){
-
-             user = getUser
-             callback(user);
-
+         factory.create = function(newUser, callback){
+           $http.post('/register', newUser).success(function(getUsers) {
+             callback(users);
            })
          }
-         factory.getUser = function(callback){
-          if(currentUser){
-            callback(currentUser);
-          }else{
-            $location.path('/');
-          }
-         }
+
          return factory;
-      });
+
+       });
+
+
+      //LOGIN FACTORY
+      //LOGIN FACTORY
+      myApp.factory('loginFactory', function($http, $location){
+         var factory = {};
+         var currentUser = null;
+
+
+         factory.getCurrent = function(callback){
+           if(currentUser) callback(currentUser);
+           else{
+             $location.path('/');
+           }
+         }
+
+         factory.login = function(data, successHandler, failHandler){
+           $http.post('/login', data).then(function(res){
+             currentUser = res.data;
+             console.log(currentUser, "got a current user");
+             successHandler(res);
+           }, failHandler);
+         }
+
+
+         factory.register = function(data, successHandler, failHandler){
+          console.log(data);
+           $http.post('/register', data).then(successHandler, failHandler);
+         }
+
+         factory.logout = function(){
+           $http.get('/logout').then(function(){
+             $location.path('/');
+           });
+         }
+
+         return factory;
+     });
       myApp.controller('MainController', function(TaskFactory, $scope, $location, LoginFactory){
->>>>>>> 7a5f514e72db773d72fb3c44b505d0076372f5c8
         $scope.new_task = {};
         $scope.tasks = [];
         // LoginFactory.getUser(function(user){
@@ -390,54 +371,6 @@
           })
         }
 
-<<<<<<< HEAD
-
-
-        //PROFILE CONTROLLER
-        myApp.controller('profilesController', function($scope, loginFactory, profileFactory, $location){
-          loginFactory.getCurrent(function(data){
-            $scope.currentUser = data;
-            console.log($scope.currentUser)
-          })
-          $scope.logout = loginFactory.logout;
-
-          profileFactory.show(function(res){
-            $scope.profile = res.data;
-          }, function(){
-            console.log('something went wrong');
-          })
-        })
-
-
-
-
-
-      //LOGIN CONTROLLER
-      myApp.controller('loginsController', function($scope, loginFactory, $location){
-          console.log("in loginsController")
-          $scope.login = function(data){
-            $scope.flash = {};
-            loginFactory.login(data, function(res){
-              $location.path('/dashboard')
-            }, function(res){
-              $scope.flash.message = res.data.message;
-              $scope.loginUser = {}
-            })
-          }
-          $scope.register = function(data){
-            $scope.flash = {};
-            loginFactory.register(data, function(res){
-              $scope.flash.message = res.data.message;
-              $scope.newUser = {}
-            })
-          }
-          $scope.logout = loginFactory.logout;
-
-        })
-
-
-
-=======
           $(document).ready(function() {
             $(document).on("click", "#special", function() {
               $('#category').val("Special");
@@ -466,34 +399,28 @@
           })  
       });
       //LOGIN CONTROLLER
-      myApp.controller('LoginController', function($scope, $location,  LoginFactory) {
-
-         $scope.login= function(user) {
-           LoginFactory.index(user, function() {
-            $scope.currentUser = user;
-            LoginFactory.getUser(function(user){
-              
-             $scope.user={};
-             console.log($scope.currentUser);
+      myApp.controller('loginsController', function($scope, loginFactory, $location){
+          console.log("in loginsController")
+          $scope.login = function(data){
+            console.log(data);
+            $scope.flash = {};
+            loginFactory.login(data, function(res){
+              $location.path('/success')
+            }, function(res){
+              $scope.flash.message = res.data.message;
+              $scope.loginUser = {}
             })
-            $location.path('/');
-           })
-         }
-       });
+          }
+          $scope.register = function(data){
+            $scope.flash = {};
+            loginFactory.register(data, function(res){
+              $scope.flash.message = res.data.message;
+              $scope.newUser = {}
+            })
+          }
+          $scope.logout = loginFactory.logout;
+        })
 
-
-      //REGISTRATION CONTROLLER
-      myApp.controller('RegisterController', function($scope, RegisterFactory) {
-         $scope.newUser = {};
-
-         $scope.addNewUser = function(newUser) {
-           RegisterFactory.create(newUser, function (newUser){
-             console.log(newUser);
-             $scope.newUser = {};
-           })
-         }
-       });
->>>>>>> 7a5f514e72db773d72fb3c44b505d0076372f5c8
 </script>
 
 </head>

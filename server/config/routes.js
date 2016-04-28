@@ -70,7 +70,6 @@ module.exports = function(app) {
         });    
       })(req, res, next);
     });
-<<<<<<< HEAD
 
     app.get('/logout', function(req, res){
       req.logout();
@@ -101,14 +100,12 @@ module.exports = function(app) {
     })
 
     
-=======
     app.get('/completed', function(req, res){
     	lists.indexCompleted(req, res);
     });
     app.get('/incomplete', function(req, res){
     	lists.indexIncomplete(req, res);
     })
->>>>>>> 7a5f514e72db773d72fb3c44b505d0076372f5c8
 }
 
 
