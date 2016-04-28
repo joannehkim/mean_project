@@ -8,7 +8,7 @@ module.exports = (function() {
   return {
 	// notice how index in the factory(client side) is calling the index method(server side)
     index: function(req, res) {
-    	List.find({}, function(err, results){
+    	List.find({}).sort('date').exec(function(err, results){
     		if(err){
     			console.log(err);
     		}else {
@@ -76,7 +76,7 @@ module.exports = (function() {
         })
     },
     indexCompleted: function(req, res) {
-        List.find({completed:"Completed"}, function(err, results){
+        List.find({completed:"Completed"}).sort('date').exec(function(err, results){
             if(err){
                 console.log(err);
             }else {
@@ -85,7 +85,7 @@ module.exports = (function() {
         })
     },
     indexIncomplete: function(req, res) {
-        List.find({completed:"Incomplete"}, function(err, results){
+        List.find({completed:"Incomplete"}).sort('date').exec(function(err, results){
             if(err){
                 console.log(err);
             }else {
