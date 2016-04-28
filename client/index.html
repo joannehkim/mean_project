@@ -92,6 +92,37 @@
         }
         return factory;
       });
+
+      //REGISTRATION FACTORY
+      myApp.factory('RegisterFactory', function($http) {
+
+         var factory = {};
+
+         factory.create = function(newUser, callback){
+           $http.post('/register', newUser).success(function(getUsers) {
+             callback(users);
+           })
+         }
+
+         return factory;
+
+       });
+
+      //LOGIN FACTORY
+      myApp.factory('LoginFactory', function($http) {
+         var factory ={};
+
+         factory.index = function(user, callback) {
+           $http.post('/login', user).success(function(getUser){
+             req.session.mainUser = getUser;
+             mainPerson = req.session.mainUser;
+
+             user = getUser
+             callback(user);
+           })
+         }
+         return factory;
+      });
       myApp.controller('MainController', function(TaskFactory, $scope, $location){
         $scope.new_task = {};
         $scope.tasks = [];
@@ -171,30 +202,54 @@
           $(document).ready(function() {
             $(document).on("click", "#special", function() {
               $('#category').val("Special");
-              $scope.new_task.category = "Special";
+              $scope.task.category = "Special";
             })
             $(document).on("click", "#shopping", function() {
               $('#category').val("Shopping");
-              $scope.new_task.category = "Shopping";
+              $scope.task.category = "Shopping";
             })
             $(document).on("click", "#work", function() {
               $('#category').val("Work");
-              $scope.new_task.category = "Work";
+              $scope.task.category = "Work";
             })
             $(document).on("click", "#travel", function() {
               $('#category').val("Travel");
-              $scope.new_task.category = "Travel";
+              $scope.task.category = "Travel";
             })
             $(document).on("click", "#study", function() {
               $('#category').val("Study");
-              $scope.new_task.category = "Study";
+              $scope.task.category = "Study";
             })
             $(document).on("click", "#errands", function() {
               $('#category').val("Errands");
-              $scope.new_task.category = "Errands";
+              $scope.task.category = "Errands";
             })
           })  
       });
+
+      //LOGIN CONTROLLER
+      myApp.controller('LoginController', function($scope, LoginFactory) {
+
+         $scope.login= function(user) {
+           LoginFactory.index(user, function(user) {
+             $scope.currentUser = user;
+             $scope.user={};
+           })
+         }
+       });
+
+
+      //REGISTRATION CONTROLLER
+      myApp.controller('RegisterController', function($scope, RegisterFactory) {
+         $scope.newUser = {};
+
+         $scope.addNewUser = function(newUser) {
+           RegisterFactory.create(newUser, function (newUser){
+             console.log(newUser);
+             $scope.newUser = {};
+           })
+         }
+       });
 </script>
 
 </head>

@@ -1,5 +1,7 @@
 // var users = require('./../controller/users.js');
 var lists = require('./../controllers/lists.js');
+
+var users = require('./../controllers/users.js');
 // var posts = require('./../controller/post.js');
 // var comments = require('./../controller/comment.js');
 
@@ -38,7 +40,13 @@ module.exports = function(app) {
 	app.post('/editTask', function(req, res){
 		lists.update(req, res);
 	})
+	app.post('/register', function(req, res) {
+        users.create(req,res);
+    });
 
+    app.post('/login', function(req, res) {
+        users.index(req,res);
+    });
 }
 
 

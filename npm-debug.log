@@ -1,0 +1,24 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'explore',
+1 verbose cli   'npm',
+1 verbose cli   '-g',
+1 verbose cli   '--',
+1 verbose cli   'npm',
+1 verbose cli   'install',
+1 verbose cli   'node-gyp@latest' ]
+2 info using npm@2.15.0
+3 info using node@v4.4.2
+4 verbose stack Error: It doesn't look like npm is installed.
+4 verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\explore.js:23:43
+4 verbose stack     at FSReqWrap.oncomplete (fs.js:82:15)
+5 verbose cwd C:\Users\Kevin\Documents\Personal\Coding\MEAN_stack\MEAN\mean_project\mean_project
+6 error Windows_NT 10.0.10586
+7 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "explore" "npm" "-g" "--" "npm" "install" "node-gyp@latest"
+8 error node v4.4.2
+9 error npm  v2.15.0
+10 error It doesn't look like npm is installed.
+11 error If you need help, you may report this error at:
+11 error     <https://github.com/npm/npm/issues>
+12 verbose exit [ 1, true ]
