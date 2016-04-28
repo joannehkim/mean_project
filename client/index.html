@@ -2,9 +2,9 @@
 <html ng-app='myApp'>
 
 <head>
-	<title>MEAN PROJECT</title>
-	<script type="text/javascript" script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-	<script type="text/javascript" script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+  <title>MEAN PROJECT</title>
+  <script type="text/javascript" script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script type="text/javascript" script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -33,7 +33,7 @@
             // controller: "successController"
           })
           .when('/success', {
-          	templateUrl: "/partials/main.html",
+            templateUrl: "/partials/main.html",
             controller: "MainController"
           })
           .when('/new_event', {
@@ -126,6 +126,8 @@
       myApp.controller('MainController', function(TaskFactory, $scope, $location){
         $scope.new_task = {};
         $scope.tasks = [];
+        $scope.sortType = 'date';
+        $scope.sortReverse = false;
         TaskFactory.index(function(data){
           $scope.tasks = data;
         });
@@ -256,9 +258,9 @@
 
 <body ng-app='myApp'>
 
-	<a class = 'links' href='#/'>Dashboard</a> | <a class= 'links' href='#/new_event'>Add a new Event</a> 
+  <a class = 'links' href='#/'>Dashboard</a> | <a class= 'links' href='#/new_event'>Add a new Event</a> 
   <div id="banner">
-    <img src="/static/banner.jpg">
+    <img src="/static/frame_banner.png">
       <div id = 'partial' ng-view="">
       </div>
   </div>

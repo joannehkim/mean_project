@@ -14,28 +14,28 @@
 
 <link rel='stylesheet' href='./static/style.css'>
 
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-5 col-md-offset-4">
   <form ng-submit = 'addTask()'>
-	<div class = 'form-group'>
-		<label for = 'name'>What do you need to do?</label>
-		<input type = 'text' class = 'form-control' ng-model = 'new_task.name' id = 'name'>
-	</div>
-	<div class = 'form-group'>
-		<label for = 'date'>Due date: </label>
-		<input type = 'date' class = 'form-control' ng-model = 'new_task.date' id = 'date'>
-	</div>
-	<div class = 'form-group'>
-		<label for = 'description'>Description: </label>
-		<input type = 'text' class = 'form-control' ng-model = 'new_task.desc' id = 'description'>
-	</div>
-	<div class = 'form-group'>
-		<label for = 'category'>Category: </label>
-		<input type = 'text' class = 'form-control' ng-model = 'new_task.category' id = 'category' data-toggle='modal' data-target='#myModal'>
-	</div>
+  <div class = 'form-group'>
+    <label for = 'name'>What do you need to do?</label>
+    <input type = 'text' class = 'form-control' ng-model = 'new_task.name' id = 'name'>
+  </div>
+  <div class = 'form-group'>
+    <label for = 'date'>Due date: </label>
+    <input type = 'date' class = 'form-control' ng-model = 'new_task.date' id = 'date'>
+  </div>
+  <div class = 'form-group'>
+    <label for = 'description'>Description: </label>
+    <input type = 'text' class = 'form-control' ng-model = 'new_task.desc' id = 'description'>
+  </div>
+  <div class = 'form-group'>
+    <label for = 'category'>Category: </label>
+    <input type = 'text' class = 'form-control' ng-model = 'new_task.category' id = 'category' data-toggle='modal' data-target='#myModal'>
+  </div>
 
-	<div class = 'form-group'>
-		<input  type = 'submit' value = 'Add Task!' class = "btn btn-primary btn-lg outline" id="task_button">
-	</div>
+  <div class = 'form-group'>
+    <input  type = 'submit' value = 'Add Task!' class = "btn btn-primary btn-lg outline" id="task_button">
+  </div>
   </form>
 
 
@@ -47,8 +47,8 @@
 * {
     font-family: Arial;
     font-size: 1.1em;
-	margin: 0px;
-	padding: 0px;
+  margin: 0px;
+  padding: 0px;
     letter-spacing: -1px;
 }
 #container {
@@ -69,8 +69,8 @@ p {
     text-align: center;
 }
 #icons {
-  width: 25%;
-  margin-left: 20px;
+  width: 29%;
+  height: 43%;
   margin-top: 20px;
 }
 #travel {
@@ -131,26 +131,26 @@ p {
         <div class="modal-body">
           <div id="container">
               <div id="study" data-dismiss="modal">
-          			<span><img id="icons" src="/static/study.png"></span>
-          		</div>
+                <span><img id="icons" src="/static/study.png"></span>
+              </div>
               
-          		<div id="travel" data-dismiss="modal">
+              <div id="travel" data-dismiss="modal">
                 <span><img id="icons" src="/static/travel_1.png"></span>
-          		</div>
+              </div>
               
-          		<div id="errands" data-dismiss="modal">
+              <div id="errands" data-dismiss="modal">
                 <span><img id="icons" src="/static/errands.png"></span>
-          		</div>
+              </div>
               
-          		<div id="shopping" data-dismiss="modal">
+              <div id="shopping" data-dismiss="modal">
                 <span><img id="icons" src="/static/shopping.png"></span>
-          		</div>
-          		<div id="special" data-dismiss="modal">
+              </div>
+              <div id="special" data-dismiss="modal">
                 <span><img id="icons" src="/static/special.png"></span>
-          		</div>
-          		<div id="work" data-dismiss = "modal">
+              </div>
+              <div id="work" data-dismiss = "modal">
                 <span><img id="icons" src="/static/work.png"></span>
-          		</div>
+              </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -163,14 +163,14 @@ p {
 
 
 <script type="text/javascript">
-	function hello() {
-		$("#new_event_category").val($("#category").val());
-		$("#myModal").modal("hide");
-	}
+  function hello() {
+    $("#new_event_category").val($("#category").val());
+    $("#myModal").modal("hide");
+  }
 
-	$('#myModal').on('hidden', function() {
-    	console.log('username : '+$("#new_event_category").val());
-	})
+  $('#myModal').on('hidden', function() {
+      console.log('username : '+$("#new_event_category").val());
+  })
 </script>
 
 
