@@ -1,52 +1,54 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-// var bcrypt = require('bcrypt');
-// const saltRounds = 10;
 
-module.exports = {
+module.exports = (function() {
+  return {
 
-	index: function(req, res) {
-		User.findOne({email: req.body.email, password:req.body.password}, function(err, results) {
-			if(err) {
-				console.log(err);
-			} else {
-				// console.log(results);
-						console.log(results);
-						res.json(results);
+     new: function(req, res){
+                    User.create(req.body, function(err, results) {
+                        if(err) {
+                            console.log(err);
+                        }
+                        else {
+                            res.json(results);
+                        }
+                    })
+            },
 
-
-			}			
-		})
-	},
-	create: function(req, res) {
-		
-		var encrypPW = "";
-
-		console.log(req.body);
-
-		if(req.body.password != req.body.confpw){
-			res.json({Error: "Passwords do not match!"});
-		} 
-		else{
+    index: function(req, res){
+                User.find({}, function(err, data){
+                    if(err) {
+                        console.log(err);
+                    }
+                    else {
+                    res.json(data);
+                    }
+                })
+        },
 
 
+    findOne: function(req, res){
+                User.findOne({_id: req.params.id}, function(err, data){
+                    console.log(req.params.id)
+                    if(err) {
+                        console.log(err);
+                    }
+                    else {
+                    res.json(data);
+                    console.log(data)
+                    }
+                })
+        },
 
 
-					console.log("User: " + req.body);
+    edit: function(req, res) {
+                User.update({_id: req.params.id},{$set: req.body}, function(err, data) {
+                        if(err) {
+                            console.log(err);
+                        }
+                        res.json(data);
+                    })
+    }
 
-					User.create(req.body, function(err, results) {
-						if(err){
-							console.log(err);
-						} else {
-							res.json(results);
-						}
-					})
-
-		}
-	},
-	remove: function(req, res) {
-		User.remove({_id: req.params.id}).exec(function(){
-    		res.json(200);
-  		});
-	}
-}
+   }
+})();

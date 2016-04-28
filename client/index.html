@@ -113,21 +113,55 @@
         return factory;
       });
 
-      //REGISTRATION FACTORY
-      myApp.factory('RegisterFactory', function($http) {
 
-         var factory = {};
+      //LOGIN FACTORY
+      myApp.factory('loginFactory', function($http, $location){
+          var factory = {};
+          var currentUser = null;
 
-         factory.create = function(newUser, callback){
-           $http.post('/register', newUser).success(function(getUsers) {
-             callback(users);
-           })
-         }
 
-         return factory;
+          factory.getCurrent = function(callback){
+            if(currentUser) callback(currentUser);
+            else{
+              $location.path('/');
+            }
+          }
 
-       });
+          factory.login = function(data, successHandler, failHandler){
+            $http.post('/login', data).then(function(res){
+              currentUser = res.data;
+              console.log(currentUser, "got a current user");
+              successHandler(res);
+            }, failHandler);
+          }
 
+<<<<<<< HEAD
+          factory.register = function(data, successHandler, failHandler){
+            $http.post('/register', data).then(successHandler, failHandler);
+          }
+
+          factory.logout = function(){
+            $http.get('/logout').then(function(){
+              $location.path('/');
+            });
+          }
+
+          return factory;
+      });
+
+      //PROFILE FACTORY
+      myApp.factory('profileFactory', function($http, loginFactory){
+        var factory = {};
+        factory.show = function(success, fail){
+          $http.get('/profile').then(success, fail)
+        }
+        return factory;
+      })
+
+
+
+      myApp.controller('MainController', function(TaskFactory, $scope, $location){
+=======
       //LOGIN FACTORY
       myApp.factory('LoginFactory', function($http, $location) {
          var factory ={};
@@ -150,6 +184,7 @@
          return factory;
       });
       myApp.controller('MainController', function(TaskFactory, $scope, $location, LoginFactory){
+>>>>>>> 7a5f514e72db773d72fb3c44b505d0076372f5c8
         $scope.new_task = {};
         $scope.tasks = [];
         // LoginFactory.getUser(function(user){
@@ -355,6 +390,54 @@
           })
         }
 
+<<<<<<< HEAD
+
+
+        //PROFILE CONTROLLER
+        myApp.controller('profilesController', function($scope, loginFactory, profileFactory, $location){
+          loginFactory.getCurrent(function(data){
+            $scope.currentUser = data;
+            console.log($scope.currentUser)
+          })
+          $scope.logout = loginFactory.logout;
+
+          profileFactory.show(function(res){
+            $scope.profile = res.data;
+          }, function(){
+            console.log('something went wrong');
+          })
+        })
+
+
+
+
+
+      //LOGIN CONTROLLER
+      myApp.controller('loginsController', function($scope, loginFactory, $location){
+          console.log("in loginsController")
+          $scope.login = function(data){
+            $scope.flash = {};
+            loginFactory.login(data, function(res){
+              $location.path('/dashboard')
+            }, function(res){
+              $scope.flash.message = res.data.message;
+              $scope.loginUser = {}
+            })
+          }
+          $scope.register = function(data){
+            $scope.flash = {};
+            loginFactory.register(data, function(res){
+              $scope.flash.message = res.data.message;
+              $scope.newUser = {}
+            })
+          }
+          $scope.logout = loginFactory.logout;
+
+        })
+
+
+
+=======
           $(document).ready(function() {
             $(document).on("click", "#special", function() {
               $('#category').val("Special");
@@ -410,6 +493,7 @@
            })
          }
        });
+>>>>>>> 7a5f514e72db773d72fb3c44b505d0076372f5c8
 </script>
 
 </head>
