@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
  "name": "mean_project",
  "version": "1.0.0",
  "description": "mean project",
@@ -42,3 +43,33 @@
  },
  "homepage": "https://github.com/joannehkim/mean_project#readme"
 }
+=======
+  "name": "mean_project",
+  "version": "1.0.0",
+  "description": "mean project",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.4.13",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joannehkim/mean_project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joannehkim/mean_project/issues"
+  },
+  "homepage": "https://github.com/joannehkim/mean_project#readme"
+}
+>>>>>>> 7a5f514e72db773d72fb3c44b505d0076372f5c8

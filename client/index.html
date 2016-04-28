@@ -25,12 +25,12 @@
             // controller: "loginController"
           })
           .when('/login', {
-            templateUrl: "/partials/login.html"
-            // controller: "successController"
+            templateUrl: "/partials/login.html",
+            controller: "LoginController"
           })
           .when('/register', {
-            templateUrl: "/partials/register.html"
-            // controller: "successController"
+            templateUrl: "/partials/register.html",
+            controller: "RegisterFactory"
           })
           .when('/success', {
             templateUrl: "/partials/main.html",
@@ -47,6 +47,14 @@
             templateUrl: "/partials/edit_event.html",
             controller:"EditController"
           })
+          .when('/completed', {
+            templateUrl: "/partials/completed_events.html",
+            controller:"CompletedController"
+          })
+          .when('/incomplete', {
+            templateUrl: "/partials/incomplete_events.html",
+            controller:"IncompleteController"
+          })    
       })
       // .controller('loginController', loginController)
       // .controller('MainController', MainController)
@@ -58,6 +66,18 @@
         var currentTask = {};
         factory.index = function(callback){
           $http.get('/tasks').success(function(output){
+            tasks = output;
+            callback(tasks);
+          })
+        }
+        factory.indexCompleted = function(callback){
+          $http.get('/completed').success(function(output){
+            tasks = output;
+            callback(tasks);
+          })
+        }
+        factory.indexIncomplete = function(callback){
+          $http.get('/incomplete').success(function(output){
             tasks = output;
             callback(tasks);
           })
@@ -115,6 +135,7 @@
             }, failHandler);
           }
 
+<<<<<<< HEAD
           factory.register = function(data, successHandler, failHandler){
             $http.post('/register', data).then(successHandler, failHandler);
           }
@@ -140,8 +161,35 @@
 
 
       myApp.controller('MainController', function(TaskFactory, $scope, $location){
+=======
+      //LOGIN FACTORY
+      myApp.factory('LoginFactory', function($http, $location) {
+         var factory ={};
+         var currentUser = null;
+         factory.index = function(user, callback) {
+           $http.post('/login', user).success(function(getUser){
+
+             user = getUser
+             callback(user);
+
+           })
+         }
+         factory.getUser = function(callback){
+          if(currentUser){
+            callback(currentUser);
+          }else{
+            $location.path('/');
+          }
+         }
+         return factory;
+      });
+      myApp.controller('MainController', function(TaskFactory, $scope, $location, LoginFactory){
+>>>>>>> 7a5f514e72db773d72fb3c44b505d0076372f5c8
         $scope.new_task = {};
         $scope.tasks = [];
+        // LoginFactory.getUser(function(user){
+        //   $scope.currentUser = user;
+        // })
         $scope.sortType = 'date';
         $scope.sortReverse = false;
         TaskFactory.index(function(data){
@@ -199,9 +247,12 @@
             })
           })  
       });
-      myApp.controller('EditController', function(TaskFactory, $scope, $location, $routeParams){
+      myApp.controller('EditController', function(TaskFactory, $scope, $location, $routeParams, LoginFactory){
         $scope.task = {};
         $scope.currentTask = {};
+        // LoginFactory.getUser(function(user){
+        //   $scope.currentUser = user;
+        // })
         TaskFactory.findOne({id:$routeParams.id}, function(data){
           $scope.currentTask = data;
           console.log($scope.currentTask);
@@ -244,7 +295,102 @@
             })
           })  
       });
+      myApp.controller('CompletedController', function(TaskFactory, $scope, $location, LoginFactory){
+        $scope.new_task = {};
+        $scope.tasks = [];
+        // LoginFactory.getUser(function(user){
+        //   $scope.currentUser = user;
+        // })
+        TaskFactory.indexCompleted(function(data){
+          $scope.tasks = data;
+        });
+        $scope.addTask = function(){
+          console.log('clicked add task');
+          $scope.new_task.completed = "Incomplete";
+          console.log($scope.new_task);
+          TaskFactory.create($scope.new_task, function(data){
+            $scope.new_task = {};
+            console.log("HERE");
+            $location.path('/success');
+          })
+        }
+        $scope.toggleStatus = function(task){
+          console.log('clicked on change status');
+          TaskFactory.toggle(task, function(data){
+            TaskFactory.indexCompleted(function(data){
+              $scope.tasks = data;
+            })
+          })
+        }
+        $scope.removeTask = function(task){
+          console.log('clicked on delete task');
+          TaskFactory.delete(task, function(data){
+            console.log('successfully deleted task');
+          })
+        }
 
+          $(document).ready(function() {
+            $(document).on("click", "#special", function() {
+              $('#category').val("Special");
+              $scope.new_task.category = "Special";
+            })
+            $(document).on("click", "#shopping", function() {
+              $('#category').val("Shopping");
+              $scope.new_task.category = "Shopping";
+            })
+            $(document).on("click", "#work", function() {
+              $('#category').val("Work");
+              $scope.new_task.category = "Work";
+            })
+            $(document).on("click", "#travel", function() {
+              $('#category').val("Travel");
+              $scope.new_task.category = "Travel";
+            })
+            $(document).on("click", "#study", function() {
+              $('#category').val("Study");
+              $scope.new_task.category = "Study";
+            })
+            $(document).on("click", "#errands", function() {
+              $('#category').val("Errands");
+              $scope.new_task.category = "Errands";
+            })
+          })  
+      });
+      myApp.controller('IncompleteController', function(TaskFactory, $scope, $location, LoginFactory){
+        $scope.new_task = {};
+        $scope.tasks = [];
+        // LoginFactory.getUser(function(user){
+        //   $scope.currentUser = user;
+        // })
+        TaskFactory.indexIncomplete(function(data){
+          $scope.tasks = data;
+        });
+        $scope.addTask = function(){
+          console.log('clicked add task');
+          $scope.new_task.completed = "Incomplete";
+          console.log($scope.new_task);
+          TaskFactory.create($scope.new_task, function(data){
+            $scope.new_task = {};
+            console.log("HERE");
+            $location.path('/success');
+          })
+        }
+        $scope.toggleStatus = function(task){
+          console.log('clicked on change status');
+          TaskFactory.toggle(task, function(data){
+            TaskFactory.indexIncomplete(function(data){
+              $scope.tasks = data;
+            })
+          })
+        }
+        $scope.removeTask = function(task){
+          console.log('clicked on delete task');
+          TaskFactory.delete(task, function(data){
+            console.log('successfully deleted task');
+          })
+        }
+
+<<<<<<< HEAD
 
 
         //PROFILE CONTROLLER
@@ -291,6 +437,63 @@
 
 
 
+=======
+          $(document).ready(function() {
+            $(document).on("click", "#special", function() {
+              $('#category').val("Special");
+              $scope.new_task.category = "Special";
+            })
+            $(document).on("click", "#shopping", function() {
+              $('#category').val("Shopping");
+              $scope.new_task.category = "Shopping";
+            })
+            $(document).on("click", "#work", function() {
+              $('#category').val("Work");
+              $scope.new_task.category = "Work";
+            })
+            $(document).on("click", "#travel", function() {
+              $('#category').val("Travel");
+              $scope.new_task.category = "Travel";
+            })
+            $(document).on("click", "#study", function() {
+              $('#category').val("Study");
+              $scope.new_task.category = "Study";
+            })
+            $(document).on("click", "#errands", function() {
+              $('#category').val("Errands");
+              $scope.new_task.category = "Errands";
+            })
+          })  
+      });
+      //LOGIN CONTROLLER
+      myApp.controller('LoginController', function($scope, $location,  LoginFactory) {
+
+         $scope.login= function(user) {
+           LoginFactory.index(user, function() {
+            $scope.currentUser = user;
+            LoginFactory.getUser(function(user){
+              
+             $scope.user={};
+             console.log($scope.currentUser);
+            })
+            $location.path('/');
+           })
+         }
+       });
+
+
+      //REGISTRATION CONTROLLER
+      myApp.controller('RegisterController', function($scope, RegisterFactory) {
+         $scope.newUser = {};
+
+         $scope.addNewUser = function(newUser) {
+           RegisterFactory.create(newUser, function (newUser){
+             console.log(newUser);
+             $scope.newUser = {};
+           })
+         }
+       });
+>>>>>>> 7a5f514e72db773d72fb3c44b505d0076372f5c8
 </script>
 
 </head>
